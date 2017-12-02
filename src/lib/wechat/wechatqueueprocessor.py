@@ -48,7 +48,7 @@ class WeChatQueueProcessor(IQueueProcessor):
 
         if access_token != None:
             url = "%s/message/custom/send?access_token=%s" % (self.WECHAT_URL, access_token)
-            response_message = 'Your request: "%s" has been processed, thank you!' % (message['content'])
+            response_message = message['content']
             formatter = WeChatMessageFormatter()
             request_body = formatter.format_delayed_reply(message, response_message)
 

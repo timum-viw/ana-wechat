@@ -14,7 +14,7 @@ class RedisManager(IDatabaseManager):
         self.connection.rpush(self.KEY_MESSAGE_QUEUE, serialized_message)
 
     def get_queued_message(self):
-        serialized_message = self.connection.lpop(self.KEY_MESSAGE_QUEUE)
+        serialized_message = self.connection.lindex(self.KEY_MESSAGE_QUEUE, 0)
         if serialized_message != None:
             return pickle.loads(serialized_message)
         return None

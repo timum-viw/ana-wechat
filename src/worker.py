@@ -1,5 +1,6 @@
 import os
 import logging
+import sys
 
 from dotenv import load_dotenv, find_dotenv
 from lib.db.redismanager import RedisManager
@@ -16,6 +17,7 @@ db_manager = RedisManager(os.getenv('REDIS_URL', ''))
 
 # Get a queued message
 queued_message = db_manager.get_queued_message()
+queued_message['content'] = sys.argv[1]
 
 # Process the queued message
 if queued_message != None:
